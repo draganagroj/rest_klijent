@@ -11,6 +11,5 @@ addons:
       name: "draganagroj/rest_klijent"
       description: "Build submitted via Travis CI"
     notification_email: groj.dragana@gmail.com
-    build_command_prepend: mvn clean
-    build_command:   mvn -DskipTests=true compile
+   
     branch_pattern: master
