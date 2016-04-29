@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Prikaz pacijenata</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </h:head>
+    <body onload="alert('sistem je pronašao pacijente po zadatoj vrednosti ')">
+               <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              
+                    <div class="navbar-header">
+                <a class="navbar-brand" href="#">Ordinacija Medic</a>
+                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+                </div>
+                  <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="pocetna.xhtml">Početna</a></li>
+                        <li ><a href="Lekar.xhtml">Podaci o lekaru</a></li>
+                        <li class="active"><a href="pacijenti.xhtml">Pacijenti</a></li>  
+
+                    
+                      
+                    </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    
+                     <li><a href="Lekar.xhtml"><span class="glyphicon glyphicon-user" style="margin-right: 3px"></span>#{logovanje.ulogovaniLekar.imeLekara} #{logovanje.ulogovaniLekar.prezimeLekara}</a></li>
+                  <li>
+                        <h:form>
+                            <h:commandButton action="#{logovanje.logout()}" class="btn" style="border-radius: 1px;" image="logout.png"/>
+                         
+                        </h:form>
+                            </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+        <!--  
+        -->
+        <div class="table-responsive">
+            <h:form>
+
+                <p:dataTable  var="pacijent" value="#{pacijentiBean.pacijenti}" widgetVar="pacijentTable" filteredValue="#{pacijentiBean.filtriraniPacijenti}"
+                            emptyMessage="Ne postoji pacijent koji odgovara kriterijumu pretrage"    tableStyleClass="table table-striped table-bordered  col-md-8">
+                    <f:facet name="header">
+                       
+                       
+                         <span class="glyphicon glyphicon-search col-md-offset-8" ></span>
+                        <p:inputText id="globalFilter" onkeyup="PF('pacijentTable').filter()" style="width:140px; margin-left: 10px"  placeholder="Unesite vrednost "/>
+                        
+                    </f:facet>
+                    
+                    <p:column  headerText="ime" filterBy="#{pacijent.imePacijenta}" class="col-md-2" filterMatchMode="startsWith">
+                        <h:outputText value="#{pacijent.imePacijenta}" />
+                    </p:column>
+                    
+                    <p:column filterBy="#{pacijent.prezimePacijenta}" headerText="prezime" filterMatchMode="startsWith" class="col-md-2" >
+                        <h:outputText value="#{pacijent.prezimePacijenta}" />
+                    </p:column>
+                    <p:column  headerText="Id" class="col-md-2" filterBy="#{pacijent.JMBGPacijenta}" filterMatchMode="contains" >
+                        <h:outputText value="#{pacijent.JMBGPacijenta}" />
+                    </p:column>
+                    <p:column  headerText="akcija"  class="col-md-2">
+
+                     
+                        <h:commandButton value="detalji" class=" btn btn-info" style="margin-left: 3px" action="#{pacijentiBean.prikaziPacijenta(pacijent)}"/>
+                      
+                      
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+
+
+
+
+
+
+        <h:form  >
+            <h:commandButton value="novi pacijent" class=" btn btn-info col-md-offset-10" action="#{pacijentiBean.dodajPacijenta()}"/>                
+        </h:form> 
+        
+        <footer style="width: 100% ;height: 60px; position: fixed; bottom: 0px; background-color:#F8F8F8 ; border:1px solid  transparent ;border-color:#E7E7E7">
+            <div class="container"> 
+                <h4 style="color:#777; text-align: center"> <b>&#169; Medics 2016 </b></h4>
+            </div>
+        </footer>
+       
+    </body>
+</html>

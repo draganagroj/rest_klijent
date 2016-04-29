@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      >
+    <head>
+        <title>Unos novog pacijenta</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+  <nav class="navbar navbar-default">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Medic ordinacija</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="pocetna.xhtml">Početna</a></li>
+                        <li ><a href="Lekar.xhtml">Podaci o lekaru</a></li>
+                        <li class="active"><a href="pacijenti.xhtml">Pacijenti</a></li>  
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li><a href="Lekar.xhtml"><span class="glyphicon glyphicon-user" style="margin-right: 3px"></span>#{logovanje.ulogovaniLekar.imeLekara} #{logovanje.ulogovaniLekar.prezimeLekara}</a></li>
+                        <li>
+                            <h:form>
+                                <h:commandButton action="#{logovanje.logout()}" class="btn" style="border-radius: 1px;" image="logout.png"/>
+
+                            </h:form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="well well-sm">
+            <h:form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Ime:"/> 
+                    <h:inputText id="ime" class="col-md-3" value="#{pacijentiBean.noviPacijent.imePacijenta}" required="true" requiredMessage="niste uneli ime" validatorMessage="ime ne sme da sadrži brojeve i mora početi velikim slovom"> 
+                        <f:validateRegex pattern="[A-Z][a-z]+"/>
+                    </h:inputText>
+                    <h:message for="ime" style="color:red" />	
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Prezime:"/> 
+                    <h:inputText id="prezime" class="col-md-3" value="#{pacijentiBean.noviPacijent.prezimePacijenta}" requiredMessage="niste uneli prezime" required="true" validatorMessage="prezime mora da sadrži vise od jednog slova">
+                        <f:validateRegex pattern="[A-Z][a-z]+"/>
+
+                    </h:inputText>
+                    <h:message for="prezime" style="color:red" />		
+
+                </div>
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="JMBG:"/> 
+                    <h:inputText id="jmbg" class="col-md-3" value="#{pacijentiBean.noviPacijent.JMBGPacijenta}" required="true" requiredMessage="niste uneli jmbg" validatorMessage="jmbg mora da ima tačno 13 brojeva i ne sme da sadrži slova" >
+                        <f:validateRegex pattern="[0-9]{13}"/>
+                    </h:inputText>
+                    <h:message for="jmbg" style="color:red" />	
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Ulica:"/> 
+                    <h:inputText id="ulica" class="col-md-3" value="#{pacijentiBean.noviPacijent.nazivUlice}" required="true" requiredMessage="niste uneli naziv ulice" validatorMessage="naziv ulice ne sme da sadrži brojeve i mora da počne sa velikim slovom">  
+                        <f:validateRegex pattern="[A-Z][a-z]+"/>
+
+                    </h:inputText>
+                    <h:message for="ulica" style="color:red" />	
+                </div>
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Broj zgrade:"/> 
+                    <h:inputText id="zgrada" class="col-md-3" value="#{pacijentiBean.noviPacijent.brojZgrade}" requiredMessage="niste uneli broj"  required="true" converterMessage="broj zgrade ne sme da sadrži slova" />
+
+
+                    <h:message for="zgrada" style="color:red" />	
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Lekar:"/> 
+                    <h:selectOneMenu value="#{pacijentiBean.pacijent_lekar}"  class="col-md-3 " converter="omnifaces.SelectItemsConverter" >
+
+                        <f:selectItems  value="#{logovanje.lekari}" var="lekar"  itemLabel="#{lekar.imeLekara} #{lekar.prezimeLekara}">
+                        </f:selectItems>
+
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="opstina" /> 
+
+                    <h:selectOneMenu value="#{pacijentiBean.pacijent_opstina}"  class="col-md-3 " converter="omnifaces.SelectItemsConverter">
+
+                        <f:selectItems  value="#{opstineBean.opstine}" var="opstina"  itemLabel="#{opstina.nazivOpstine}">
+                        </f:selectItems>
+
+                    </h:selectOneMenu>
+                </div>
+
+                <h:commandButton value="sacuvaj izmene" id="sacuvaj"   class=" btn btn-info" action="#{pacijentiBean.dodajNovog()}"/> 
+            </h:form>
+        </div>
+       
+        <c:if test="#{pacijentiBean.status_novi eq 200}">
+            <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <span class="sr-only">OK:</span>
+                <strong>Promene su uspešno sačuvane</strong> 
+                #{pacijentiBean.setStatus_novi(0)}
+            </div>
+        </c:if>
+        <c:if test="#{pacijentiBean.status_novi eq 0 }">
+        </c:if>
+        <c:if test="#{pacijentiBean.status_novi != 200 and pacijentiBean.status_novi != 0 }">
+            <div class="alert alert-danger">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                <strong>Greška pri čuvanju</strong> 
+                #{pacijentiBean.setStatus_novi(0)}
+            </div>
+        </c:if>
+
+        <h:form>
+            <h:commandButton action="pacijenti.xhtml?faces-redurect=true"  class="btn btn-default" image="slikica.png" >
+
+            </h:commandButton>
+        </h:form>
+
+        <footer style="width: 100% ;height: 60px; position: fixed; bottom: 0px; background-color:#F8F8F8 ; border:1px solid  transparent ;border-color:#E7E7E7">
+            <div class="container"> 
+                <h4 style="color:#777; text-align: center"> <b>&#169; Medics 2016 </b></h4>
+            </div>
+        </footer>
+    </body>
+</html>

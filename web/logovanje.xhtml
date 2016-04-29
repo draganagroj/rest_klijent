@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+      
+    <h:head>
+        <title>logovanje</title>
+         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
+    </h:head>
+    
+    <body style="background-color:lightgrey;">
+      
+       <div class="container">
+        <div class="panel panel-default">  
+             <div class="panel-heading">Logovanje</div>
+            <div class="panel-body">
+                <h:form> 
+                   Unesite username: <h:inputText id="name" value="#{logovanje.theUserName}"/> 
+                    <br></br>  <br> </br>
+                   Unesite password: <h:inputSecret id="pass" value="#{logovanje.password}"/>
+                    <br> </br>
+                    <h:commandButton value="uloguj se" class=" btn btn-info"  action="#{logovanje.login()}"/>
+                      
+                </h:form>
+                <font color="red"><h:messages> </h:messages></font>
+            </div>
+           </div>
+        </div>
+       
+    </body>
+</html>
+

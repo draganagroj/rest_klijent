@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <head>
+        <title>Dodavanje pregleda</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Ordinacija Medic</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="pocetna.xhtml">Početna</a></li>
+                        <li ><a href="Lekar.xhtml">Podaci o lekaru</a></li>
+                        <li class="active"><a href="pacijenti.xhtml">Pacijenti</a></li>  
+
+
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li><a href="Lekar.xhtml"><span class="glyphicon glyphicon-user" style="margin-right: 3px"></span>#{logovanje.ulogovaniLekar.imeLekara} #{logovanje.ulogovaniLekar.prezimeLekara}</a></li>
+                        <li>
+                            <h:form>
+                                <h:commandButton action="#{logovanje.logout()}" class="btn" style="border-radius: 1px;" image="logout.png"/>
+
+                            </h:form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="well well-sm">
+            <h:form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Pacijent:"/> 
+                    <h:inputText  class="col-md-3" value="#{pacijentiBean.pregled.pacijent.imePacijenta} #{pacijentiBean.pregled.pacijent.prezimePacijenta} " disabled="true"/>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Lekar:"/> 
+                    <h:inputText id="prezime" class="col-md-3" value="#{pacijentiBean.pregled.lekar.imeLekara} #{pacijentiBean.pregled.lekar.prezimeLekara}" disabled="true"/>
+
+                </div>
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Datum:"/> 
+                    <h:inputText  class="col-md-3" value="#{pacijentiBean.pregled.datum}" disabled="true" >
+                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                    </h:inputText>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Tip pregleda:"/> 
+                    <h:selectOneMenu value="#{pacijentiBean.tip}"  class="col-md-3 " converter="omnifaces.SelectItemsConverter">
+
+                        <f:selectItems  value="#{tipPregledaBean.listaTipovaPregleda}" var="tipP"  itemLabel="#{tipP.nazivTipaPregleda}">
+                        </f:selectItems>
+
+                    </h:selectOneMenu>
+                </div>
+
+                <h4 class="col-md-offset-2">Unesite podatke o nalazu</h4>
+                <br> </br>
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="    Broj Nalaza :"/> 
+
+                    <h:inputText class="col-md-3" value="#{pacijentiBean.brojNalaza}" />
+                </div>
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Predložena terapija :"/> 
+
+                    <h:inputText class="col-md-3" value="#{pacijentiBean.terapija}" />
+                </div>
+                <div class="form-group">
+                    <h:outputLabel class="control-label col-md-2" value="Tegobe :"/> 
+
+                    <h:inputText class="col-md-3" value="#{pacijentiBean.tegobe}" />
+
+                </div>
+
+                <h:commandButton value="dodaj" class="btn btn-default col-md-offset-4" action="#{pacijentiBean.dodajNalaz()}" />
+
+                <h:dataTable value="#{pacijentiBean.listaNalaza}" var="nalaz"
+                             rendered="#{not empty pacijentiBean.listaNalaza}"
+                             class="table table-bordered table-striped">
+
+                    <h:column>
+
+                        <f:facet name="header">Broj nalaza</f:facet>
+                            #{nalaz.redniBroj}
+
+                    </h:column>
+
+                    <h:column>
+
+                        <f:facet name="header">Tegobe</f:facet>
+                            #{nalaz.tegobe}
+
+                    </h:column>
+
+                    <h:column>
+
+                        <f:facet name="header">Predložena terapija</f:facet>
+                            #{nalaz.predlozenaTerapija}
+
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton value="sacuvaj pregled" id="sacuvaj"   class=" btn btn-info  col-md-offset-2" action="#{pacijentiBean.sacuvajPregled()}"/> 
+            </h:form>
+        </div>
+           <h:form>
+               <h:commandButton action="#{pacijentiBean.osveziPregledePacijenta(pacijentiBean.pregled.pacijent)}"  class="btn btn-default" image="slikica.png" >
+
+            </h:commandButton>
+        </h:form>
+        <c:if test="#{pacijentiBean.status_novi_pregled eq 204}">
+            <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <span class="sr-only">OK:</span>
+                <strong>Promene su uspešno sačuvane</strong> 
+                #{pacijentiBean.setStatus_novi_pregled(0)}
+               
+                 
+            </div>
+        </c:if>
+        <c:if test="#{pacijentiBean.status_novi_pregled eq 0 }">
+        </c:if>
+        <c:if test="#{pacijentiBean.status_novi_pregled != 204 and pacijentiBean.status_novi_pregled != 0 }">
+            <div class="alert alert-danger">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                <strong>Greška pri čuvanju</strong> 
+                #{pacijentiBean.setStatus_novi_pregled(0)}
+               
+            </div>
+        </c:if>
+          
+          <footer style="width: 100% ;height: 60px; position: fixed; bottom: 0px; background-color:#F8F8F8 ; border:1px solid  transparent ;border-color:#E7E7E7">
+            <div class="container"> 
+                <h4 style="color:#777; text-align: center"> <b>&#169; Medics 2016 </b></h4>
+            </div>
+        </footer>
+    </body>
+</html>

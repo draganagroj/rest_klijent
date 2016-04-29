@@ -1,0 +1,5 @@
+projectKey=klijent
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/klijent
+ceTaskId=AVPSh1BP26Wn8IPTVmyx
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVPSh1BP26Wn8IPTVmyx
