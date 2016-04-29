@@ -3,13 +3,13 @@ env:
   global:
    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
    #   via the "travis encrypt" command using the project repo's public key
-   - secure: "LrgvA1I4XYQJ+OJYDjOn0wE3+tF/rwZhTlVp6+cp+nTL82S1viqUSetyq0mtd1fLW2oggZ7bKRUXr+kFl+XZx4fwkpYzF49gpyTu6SyJPNSr1YUbuHYSlulDez67onobt2jjdtKmvoE8IYG+iYrItt2qhKDXw//di5ExQTn46y4Ucl1zTnoo6Vbj9cCA213FCASPVs8+e5cZf/Xc+Mq4ATNVHieiZ6bskn9DuD2FhCysGifxElSULopij+BmUWip7MR57kxj9hMU7bcIJ7b+aouwYw6uiymopBXhXt2G/WBHw5Y+eDeSeTRJJfjuobamcdh1lhJXe8X9deLZRYiN64M2zLfXdG7VNWGJRoqNVkth43fWRAg/GF6j3ECu2i5ERprJaZpJPTAXAgX+swBPzhcwSv0vkdaEIbfwe9nBIyo9wIEANqdTKr0BGMbqvmdoAyIm+dUMgT4Pv4if3e7yfC6ojYFB+7vT+fA8/39eE19rrIVjJdggdxwDHrI6lH/p4LFAFFv/FwRQMXMWlb+6v4atFrwTVhcJpl/E2/2zdmO7O3Nzpq4YyGECFEowfgpYy5AXoq+i//beLuuKUqN2MRXyhcJPyYlEcRxA/fWYnl+zsyWBbI4ZY43CCO4RFGy3VulTqdzHees1E8gcCw6Cui9MZt1a05oyQ2YGU9YZdNw="
+   - secure: "WJnZT4PJ1F64s2o7XgqlcZBjadd6vc6vqvwYhi13r5HO618YP1+ITvTRFe11pZ59hE+HVVZ/g/wjKQaWFA3JhPcIbrKL16chECS1nvKUz1DuiWN+HfcVGC8RUOHB1WyYdld4oaAoqhc3r3V74SAE7BntM0EloSyRQENkmtXJSqqVtEEUay1vJvW8ji03NaiTy3UiQFJ0vTM6J9Kbnap1JMKMKhUMSV2WR3fIp+Y0WXgt0uLWSYjLnKj3eVPf4MexMPNXDb95Bs/6SLWCNgHi9cAcKPE8WzrdHV3D9HUYNgDukta0a4B9/r91KS2NOmZR36VUOZ+ewPqo5BW1A2FqEBRWKilkzxDXbK/r/p2QkzWDSyS8UE+/jfhvhOOT06Pj7hjE5Dux9Dnbc7KeSmItyJNmQh/mPV2DXV4jT3tsL/qeH2+CAHb6SjEKWLO6wnrL5/Ih54UyumQo/4hnBI05VADEOHcaMhpq8f4NjOjfQpnaIn8pzudxWoDHd+RSpYg8Zp5YQ0AI2/GFCFv26N+X294Y/xeBSc0TK4+7JeMmz2nxurxysD3FUqWCeDzO75bu05TEj7khs/Z05QAElZC1gZlBTHOL80HAM3DRyl8+6Ghc/vBWZRUa4MmlLyokQExh+YmGdyatv+WZmYLzY97x4dT8DsmIwpXAjVxMo1xFKUA="
 
 addons:
   coverity_scan:
     project:
        name: "draganagroj/rest_klijent"
-      description: "Build submitted via Travis CI"
+      
     notification_email: groj.dragana@gmail.com
    
     branch_pattern: master
