@@ -1,10 +1,6 @@
 language: java
 
-env:
-  global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
-   - secure: "Kps3IQzYFqVO62o4PdhtpUVCpq92fT/C8sKBkVe0JZ/1mAJOHR8RcOMXfDZx33Z7Xm9Kgep72gsGNtNxKGsYgA3H5zqffo3UUtfIAVAzVF4WCVvlq5ymiTEuPRcNR2nCoJWybSo9+8SeIYJgI7E/B8YWK1AHps0jouzOU6CG+569/uvhItA6zjf+mFZU9zvQKJG3/JvxS5CW3Ew4f/0iwwrha/iEQqJGQ8oSivsBT+uND4wyhjThF5aiW14fiUIEYVFl/2tD+0F6oTWiwqEGzJbDC793yfrNdje2eCG//MQfY9acmQP/Bv2DfuowRJVwFc+W++C0ygYsEImWIdISiG/arkfyxd5TgLxApyi2Pyk7gVM83Lp9OlC4IFvhLbYP5nHeIfR9DKiPY4BIdnurkV4J5iO5QzilDMPYT8WRP/zUBrlp6xX/NbabysmZeOFjXWXR/GJzw9Zy8Y+ahM8d1gfIMZx3+MLmLgrkg6xbsVx4ie6X7uakAYRWj2YBQ+SdwmSSxCMBWlCe+cI0eRQYN5vdt4lcEWjm9HCMVnpgEFp8Y5B1y84AiSTpYt3fR70QieaQ45MWu3O/OpdgkcpVOlyrJzkUjQPeuBWRSzsw+Lj+CKA6nO5fBEb3NJnJiFjY2t59dgzVYEWlnL6tfw3webMrYnRIVlbz3M1/8t0/EsI="
+
 addons:
   coverity_scan:
     project:
