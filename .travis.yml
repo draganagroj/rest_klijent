@@ -7,7 +7,7 @@ env:
 addons:
   coverity_scan:
     project:
-      name: "draganagroj/rest"
+      name: "draganagroj/rest_klijent"
       description: "Build submitted via Travis CI"
     notification_email: groj.dragana@gmail.com
     build_command_prepend: "mvn clean"
