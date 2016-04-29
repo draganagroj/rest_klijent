@@ -3,6 +3,6 @@ language: java
 addons:
   coverity_scan:
    project:
-      name: draganagroj/rest_kijent
+      name: draganagroj/rest_klijent
    
     branch_pattern: master  
